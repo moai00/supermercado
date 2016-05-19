@@ -18,6 +18,20 @@ public class Producto implements Serializable {
     private double pvp;
     private int stock;
 
+    public Producto() {
+    descripcion = "";
+    }
+
+    public Producto(int codigo, String descripcion, double pvp, int stock) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.pvp = pvp;
+        this.stock = stock;
+    }
+    
+    
+    
+
     public static final String PROP_STOCK = "stock";
 
     public int getStock() {
