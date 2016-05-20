@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_80" class="java.beans.XMLDecoder">
+ <object class="modelo.ListaClientes" id="ListaClientes0">
+  <void property="lista">
+   <void method="add">
+    <object class="modelo.Cliente">
+     <void property="apellidos">
+      <string>222</string>
+     </void>
+     <void property="direccion">
+      <string>22</string>
+     </void>
+     <void property="nif">
+      <string>222222222</string>
+     </void>
+     <void property="nombre">
+      <string>222</string>
+     </void>
+     <void property="poblacion">
+      <string>Mataró</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Cliente">
+     <void property="apellidos">
+      <string>Port Ramon</string>
+     </void>
+     <void property="direccion">
+      <string>Riera 20 3º 4ª</string>
+     </void>
+     <void property="nif">
+      <string>77611300P</string>
+     </void>
+     <void property="nombre">
+      <string>Miquel</string>
+     </void>
+     <void property="poblacion">
+      <string>Pineda de Mar</string>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>

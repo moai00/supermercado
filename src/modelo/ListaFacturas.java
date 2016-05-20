@@ -23,7 +23,13 @@ public class ListaFacturas implements Serializable {
     }
     
         
-        
+    public boolean existeFactura(Factura fra){
+        return lista.contains(fra);
+    } 
+    
+    public void altaFactura(Factura fra){
+        lista.add(fra);
+    }
 
     public static final String PROP_LISTA = "lista";
 

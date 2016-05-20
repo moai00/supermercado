@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_80" class="java.beans.XMLDecoder">
+ <object class="modelo.ListaProductos" id="ListaProductos0">
+  <void property="lista">
+   <void method="add">
+    <object class="modelo.Producto">
+     <void property="descripcion">
+      <string>patatas</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Producto">
+     <void property="codigo">
+      <int>1</int>
+     </void>
+     <void property="descripcion">
+      <string>lechugas</string>
+     </void>
+     <void property="pvp">
+      <double>1.0</double>
+     </void>
+     <void property="stock">
+      <int>2</int>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Producto">
+     <void property="codigo">
+      <int>3</int>
+     </void>
+     <void property="descripcion">
+      <string>salsa agridulce</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Producto">
+     <void property="codigo">
+      <int>12</int>
+     </void>
+     <void property="descripcion">
+      <string>lata berberechos</string>
+     </void>
+     <void property="pvp">
+      <double>0.1</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Producto">
+     <void property="codigo">
+      <int>5</int>
+     </void>
+     <void property="descripcion">
+      <string>almejas</string>
+     </void>
+     <void property="pvp">
+      <double>5.0</double>
+     </void>
+     <void property="stock">
+      <int>2</int>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Producto">
+     <void property="codigo">
+      <int>6</int>
+     </void>
+     <void property="descripcion">
+      <string>manzana</string>
+     </void>
+     <void property="pvp">
+      <double>3.0</double>
+     </void>
+     <void property="stock">
+      <int>100</int>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Producto">
+     <void property="codigo">
+      <int>101</int>
+     </void>
+     <void property="descripcion">
+      <string>hola</string>
+     </void>
+     <void property="pvp">
+      <double>1.0</double>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>

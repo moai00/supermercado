@@ -59,6 +59,13 @@ public class Cliente implements Serializable {
 
     }
 
+    @Override
+    public String toString() {
+        return apellidos + ", " + nombre;
+    }
+    
+    
+
     public static final String PROP_POBLACION = "poblacion";
 
     public String getPoblacion() {

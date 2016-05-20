@@ -22,6 +22,13 @@ public class Producto implements Serializable {
     descripcion = "";
     }
 
+    @Override
+    public String toString() {
+        return descripcion + " - " + pvp + " €";
+    }
+    
+    
+
     public Producto(int codigo, String descripcion, double pvp, int stock) {
         this.codigo = codigo;
         this.descripcion = descripcion;
