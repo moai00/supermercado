@@ -6,6 +6,7 @@ package modelo;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -15,8 +16,8 @@ public class Cliente implements Serializable {
 
     private String nif;
 
-    public static final String PROP_NIF = "nif";    
-    private String nombre;    
+    public static final String PROP_NIF = "nif";
+    private String nombre;
     private String apellidos;
     private String direccion;
     private String poblacion;
@@ -24,9 +25,9 @@ public class Cliente implements Serializable {
     public Cliente() {
         nif = "";
         nombre = "";
-        apellidos="";
-        direccion="";
-        poblacion="";
+        apellidos = "";
+        direccion = "";
+        poblacion = "";
     }
 
     public Cliente(String nif, String nombre, String apellidos, String direccion, String poblacion) {
@@ -36,23 +37,41 @@ public class Cliente implements Serializable {
         this.direccion = direccion;
         this.poblacion = poblacion;
     }
-    
-    
-    
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.nif);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+
+        return other.getNif().equalsIgnoreCase(nif);
+
+    }
 
     public static final String PROP_POBLACION = "poblacion";
 
     public String getPoblacion() {
         return poblacion;
     }
+    
+   
 
     public void setPoblacion(String poblacion) {
         String oldPoblacion = this.poblacion;
         this.poblacion = poblacion;
         propertyChangeSupport.firePropertyChange(PROP_POBLACION, oldPoblacion, poblacion);
     }
-
 
     public static final String PROP_DIRECCION = "direccion";
 
@@ -66,7 +85,6 @@ public class Cliente implements Serializable {
         propertyChangeSupport.firePropertyChange(PROP_DIRECCION, oldDireccion, direccion);
     }
 
-
     public static final String PROP_APELLIDOS = "apellidos";
 
     public String getApellidos() {
@@ -79,7 +97,6 @@ public class Cliente implements Serializable {
         propertyChangeSupport.firePropertyChange(PROP_APELLIDOS, oldApellidos, apellidos);
     }
 
-
     public static final String PROP_NOMBRE = "nombre";
 
     public String getNombre() {
@@ -91,7 +108,6 @@ public class Cliente implements Serializable {
         this.nombre = nombre;
         propertyChangeSupport.firePropertyChange(PROP_NOMBRE, oldNombre, nombre);
     }
-
 
     public String getNif() {
         return nif;

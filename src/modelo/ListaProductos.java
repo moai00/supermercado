@@ -24,6 +24,14 @@ public class ListaProductos implements Serializable {
         lista = ObservableCollections.observableList(new ArrayList<Producto>());
 
     }
+    
+    public boolean existeProducto (Producto p){
+        return lista.contains(p);
+    }
+    
+    public void altaProducto (Producto p){
+        lista.add(p);
+    }
 
     public static final String PROP_LISTA = "lista";
 
