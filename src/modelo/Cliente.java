@@ -7,12 +7,14 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author usu21
  */
-public class Cliente implements Serializable {
+public class Cliente implements Serializable, Comparable, Cloneable {
 
     private String nif;
 
@@ -61,18 +63,19 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return apellidos + ", " + nombre;
+
+        if (apellidos.equals("--Escoge un cliente --")) {
+            return apellidos;
+        } else {
+            return apellidos + ", " + nombre;
+        }
     }
-    
-    
 
     public static final String PROP_POBLACION = "poblacion";
 
     public String getPoblacion() {
         return poblacion;
     }
-    
-   
 
     public void setPoblacion(String poblacion) {
         String oldPoblacion = this.poblacion;
@@ -134,6 +137,24 @@ public class Cliente implements Serializable {
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
+    }
+
+    @Override
+    public Object clone()  {
+        try {
+            return super.clone();
+        }catch (CloneNotSupportedException ex){
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE,null,ex);
+            return null;
+        }
+       
+    }
+
+    @Override
+    public int compareTo(Object t) {
+        Cliente otro = (Cliente) t;
+        //queremos que ordene por apellidos
+        return apellidos.compareTo(otro.getApellidos());
     }
 
 }

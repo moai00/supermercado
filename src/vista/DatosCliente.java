@@ -5,6 +5,7 @@
  */
 package vista;
 
+import java.awt.HeadlessException;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
@@ -16,8 +17,8 @@ import static supermercado.Supermercado.ficheroClientes;
  * @author usu21
  */
 public class DatosCliente extends javax.swing.JDialog {
-    
-        private Cliente cliente;
+
+    private Cliente cliente;
 
     public Cliente getCliente() {
         return cliente;
@@ -27,14 +28,23 @@ public class DatosCliente extends javax.swing.JDialog {
         this.cliente = cliente;
     }
 
+    private String modo;
+    public boolean cancelar = true;
 
     /**
      * Creates new form DatosCliente
      */
-    public DatosCliente(java.awt.Frame parent, boolean modal) {
+    //cliente c será cliente seleccionado en caso de modificar, vacio en caso de alta
+    //Modo: "Alta" o "Modificar" para saber qué operación quiere hacer el usuario
+    public DatosCliente(java.awt.Frame parent, boolean modal, Cliente c, String modo) {
         super(parent, modal);
-        cliente = new Cliente();
+        cliente = c;
+        this.modo = modo;
+        cancelar = true;
         initComponents();
+        if (modo.equals("Modificar")) {
+            jTextField1.setEnabled(false);
+        }
     }
 
     /**
@@ -183,37 +193,53 @@ public class DatosCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        dispose();       
+        cancelar = false;
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        if (cliente.getNif().equals("")||cliente.getNombre().equals("") || cliente.getApellidos().equals("") || cliente.getDireccion().equals("")){
-            JOptionPane.showMessageDialog(this, "No puede haber ningún campo en blanco", "Campos en blanco", JOptionPane.ERROR_MESSAGE);
-        }else if (jComboBox1.getSelectedIndex()== 0){
-            JOptionPane.showMessageDialog(this, "Debes seleccionar una poblacion", "Población Incorrecta", JOptionPane.ERROR_MESSAGE);
-        }else if( cliente.getNif().length() != 9){
-            JOptionPane.showMessageDialog(this, "NIF de longitud incorrecta", "Error de NIF", JOptionPane.ERROR_MESSAGE );
-            
-        }else if(clientes.existeCliente(cliente)) {
-            
-            JOptionPane.showMessageDialog(this, "YA existe ese NIF", "NIF duplicado", JOptionPane.ERROR_MESSAGE);
-            
-        }else{
-            clientes.altaCliente(cliente);
-            ficheroClientes.grabar(clientes);
-            JOptionPane.showMessageDialog(this, "Cliente dado de alta");
-            dispose();
+        boolean ok = comprobarCampos();
+        String msg = "";
+        if (ok) {
+            if (modo.equals("Alta")) {
+                if (clientes.existeCliente(cliente)) {
+                    JOptionPane.showMessageDialog(this, "Ya existe un cliente con ese NIF", "Cliente duplicado", JOptionPane.ERROR_MESSAGE);
+                    ok = false;
+                } else {
+                    clientes.altaCliente(cliente);
+                    msg = "Cliente dado de alta";
+                }
+
+            } else {
+                msg = "Cliente modificado";
+            }
+            if (ok) {
+                ficheroClientes.grabar(clientes);
+                JOptionPane.showMessageDialog(this, msg);
+                cancelar = false;
+                dispose();
+            }
         }
-        
-        
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private boolean comprobarCampos() {
+
+        if (cliente.getNif().equals("") || cliente.getNombre().equals("") || cliente.getApellidos().equals("") || cliente.getDireccion().equals("")) {
+            JOptionPane.showMessageDialog(this, "No puede haber ningún campo en blanco", "Campos en blanco", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if (jComboBox1.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Debes seleccionar una poblacion", "Población Incorrecta", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if (cliente.getNif().length() != 9) {
+            JOptionPane.showMessageDialog(this, "NIF de longitud incorrecta", "Error de NIF", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
 
     /**
      * @param args the command line arguments
      */
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

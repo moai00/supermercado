@@ -5,6 +5,8 @@
  */
 package vista;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
@@ -31,7 +33,10 @@ public class DatosFactura extends javax.swing.JDialog {
     private ListaProductos losProductos;
     
     public ListaProductos getLosProductos() {
+        
+       
         return losProductos;
+       
     }
     
     public void setLosProductos(ListaProductos losProductos) {
@@ -60,10 +65,18 @@ public class DatosFactura extends javax.swing.JDialog {
     public DatosFactura(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         factura = new Factura();
-        todosLosClientes = clientes;
-        losProductos = productos;
+        todosLosClientes = clientes.copiaClientes();
+        Cliente auxiliar = new Cliente();
+        auxiliar.setApellidos("--Escoge un cliente--");
+        todosLosClientes.altaCliente(auxiliar);
+        //ordenamos la lista
+        Collections.sort(todosLosClientes.getLista());
+        losProductos = productos.productosEnStock();       
+        Producto escoge = new Producto();
+        escoge.setDescripcion("--Escoge un producto--");
+        losProductos.altaProducto(escoge); 
+        Collections.sort(losProductos.getLista());
         initComponents();
-
         //new Date devuelve la fecha actual en el botón de seleccionar fecha
         jXDatePicker1.setDate(new Date());
     }

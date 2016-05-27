@@ -16,7 +16,7 @@ import static supermercado.Supermercado.productos;
  */
 public class DatosProducto extends javax.swing.JDialog {
 
-        private Producto producto;
+    private Producto producto;
 
     public Producto getProducto() {
         return producto;
@@ -26,15 +26,22 @@ public class DatosProducto extends javax.swing.JDialog {
         this.producto = producto;
     }
 
-    
-    
+    private String modo;
+    public boolean cancelar = true;
+
     /**
      * Creates new form DatosProducto
      */
-    public DatosProducto(java.awt.Frame parent, boolean modal) {
+    public DatosProducto(java.awt.Frame parent, boolean modal, Producto p, String modo) {
         super(parent, modal);
-        producto = new Producto();
+        producto = p;
+        this.modo = modo;
+        cancelar = true;
+
         initComponents();
+        if (modo.equals("Modificar")) {
+            jTextField1.setEnabled(false);
+        }
     }
 
     /**
@@ -152,31 +159,55 @@ public class DatosProducto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        cancelar = false;
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-         if (producto.getDescripcion().equals("")){
-            JOptionPane.showMessageDialog(this, "La descripción no puede estar en blanco", "Descripción en blanco",JOptionPane.ERROR_MESSAGE);
-        }else if (producto.getPvp()<=0 ){
-            JOptionPane.showMessageDialog(this, "PVP no puede ser negativo", "PVP negativo", JOptionPane.ERROR_MESSAGE);
-        }else if (producto.getStock()<0){
-            JOptionPane.showMessageDialog(this, "El stock no puede ser negativo", "Stock negativo", JOptionPane.ERROR_MESSAGE);
-        }else if (productos.existeProducto(producto)){
-            JOptionPane.showMessageDialog(this, "Ya existe un producto con ese código", "Código duplicado",JOptionPane.ERROR_MESSAGE);  
-        }else{
-            productos.altaProducto(producto);
-            ficheroProductos.grabar(productos);
-            JOptionPane.showMessageDialog(this, "Producto dado de alta");
-            dispose();
+
+        boolean ok = comprobarCampos();
+        String msg = "";
+        if (ok) {
+            if (modo.equals("Alta")) {
+                if (productos.existeProducto(producto)) {
+                    JOptionPane.showMessageDialog(this, "Ya existe un producto con ese código", "Producto duplicado", JOptionPane.ERROR_MESSAGE);
+                    ok = false;
+                } else {
+                    productos.altaProducto(producto);
+                    msg = "Producto dado de alta";
+                }
+            } else {
+                msg = "Producto modificado";
+            }
+
+            if (ok) {
+
+                ficheroProductos.grabar(productos);
+
+                JOptionPane.showMessageDialog(this, msg);
+                cancelar = false;
+                dispose();
+            }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private boolean comprobarCampos() {
+        if (producto.getDescripcion().equals("")) {
+            JOptionPane.showMessageDialog(this, "La descripción no puede estar en blanco", "Descripción en blanco", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if (producto.getPvp() <= 0) {
+            JOptionPane.showMessageDialog(this, "PVP no puede ser negativo", "PVP negativo", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if (producto.getStock() < 0) {
+            JOptionPane.showMessageDialog(this, "El stock no puede ser negativo", "Stock negativo", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
 
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -30,6 +30,8 @@ public class Factura implements Serializable {
     public double total(){
         return cantidad * producto.getPvp();
     }
+    
+    
 
     @Override
     public int hashCode() {

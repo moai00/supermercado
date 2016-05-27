@@ -22,12 +22,27 @@ public class ListaClientes implements Serializable {
         lista = ObservableCollections.observableList(new ArrayList<Cliente>());
     }
     
+    
+    //metodo que devuelve una copia de la lista
+    public ListaClientes copiaClientes(){
+        ListaClientes copia = new ListaClientes();
+        for (Cliente c : lista){
+            copia.altaCliente(c);
+        }
+        return copia;
+    }
+    
+    
     public boolean existeCliente (Cliente c){
         return lista.contains(c);
     }
     
     public void altaCliente (Cliente c){
         lista.add(c);
+    }
+    
+    public void bajaCliente (Cliente c){
+        lista.remove(c);
     }
 
     public static final String PROP_LISTA = "lista";

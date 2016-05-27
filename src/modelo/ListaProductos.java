@@ -29,8 +29,24 @@ public class ListaProductos implements Serializable {
         return lista.contains(p);
     }
     
+   
+    
     public void altaProducto (Producto p){
         lista.add(p);
+    }
+    
+    public void bajaProducto (Producto p){
+        lista.remove(p);
+    }
+    
+    public ListaProductos productosEnStock(){
+        ListaProductos productosConStock = new ListaProductos();
+        for (Producto p : lista){
+            if (p.getStock() > 0){
+                productosConStock.altaProducto(p);
+            }
+        }
+        return productosConStock;
     }
 
     public static final String PROP_LISTA = "lista";

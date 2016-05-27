@@ -6,12 +6,14 @@ package modelo;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author mport
  */
-public class Producto implements Serializable {
+public class Producto implements Serializable, Comparable, Cloneable {
 
     private int codigo;
     private String descripcion;
@@ -19,15 +21,20 @@ public class Producto implements Serializable {
     private int stock;
 
     public Producto() {
-    descripcion = "";
+        descripcion = "";
     }
 
     @Override
     public String toString() {
-        return descripcion + " - " + pvp + " €";
+        if (descripcion.equals("-- Escoge un producto --")) {
+            return descripcion;
+
+        } else {
+
+            return descripcion + " - " + pvp + " €";
+        }
+
     }
-    
-    
 
     public Producto(int codigo, String descripcion, double pvp, int stock) {
         this.codigo = codigo;
@@ -57,11 +64,6 @@ public class Producto implements Serializable {
         }
         return true;
     }
-    
-    
-    
-    
-    
 
     public static final String PROP_STOCK = "stock";
 
@@ -75,7 +77,6 @@ public class Producto implements Serializable {
         propertyChangeSupport.firePropertyChange(PROP_STOCK, oldStock, stock);
     }
 
-
     public static final String PROP_PVP = "pvp";
 
     public double getPvp() {
@@ -87,7 +88,6 @@ public class Producto implements Serializable {
         this.pvp = pvp;
         propertyChangeSupport.firePropertyChange(PROP_PVP, oldPvp, pvp);
     }
-
 
     public static final String PROP_DESCRIPCION = "descripcion";
 
@@ -122,5 +122,24 @@ public class Producto implements Serializable {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
     }
+
+    @Override
+    public int compareTo(Object t) {
+      Producto otro = (Producto) t;
+      return descripcion.compareTo(otro.getDescripcion());
+    }
+
+    @Override
+    public Object clone()  {
+        try {
+            return super.clone();
+            
+        }catch (CloneNotSupportedException ex){
+            Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null,ex);
+        return null;
+        }
+    }
+    
+    
 
 }

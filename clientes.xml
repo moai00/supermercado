@@ -24,6 +24,25 @@
    <void method="add">
     <object class="modelo.Cliente">
      <void property="apellidos">
+      <string>Alala</string>
+     </void>
+     <void property="direccion">
+      <string>pepe</string>
+     </void>
+     <void property="nif">
+      <string>78787874D</string>
+     </void>
+     <void property="nombre">
+      <string>Andres</string>
+     </void>
+     <void property="poblacion">
+      <string>Barcelona</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Cliente">
+     <void property="apellidos">
       <string>Port Ramon</string>
      </void>
      <void property="direccion">
@@ -33,7 +52,45 @@
       <string>77611300P</string>
      </void>
      <void property="nombre">
-      <string>Miquel</string>
+      <string>Miquelin</string>
+     </void>
+     <void property="poblacion">
+      <string>Pineda de Mar</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Cliente">
+     <void property="apellidos">
+      <string>brown</string>
+     </void>
+     <void property="direccion">
+      <string>lloret</string>
+     </void>
+     <void property="nif">
+      <string>89898989p</string>
+     </void>
+     <void property="nombre">
+      <string>sandrinho</string>
+     </void>
+     <void property="poblacion">
+      <string>Pueblo Nuevo</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Cliente">
+     <void property="apellidos">
+      <string>perez</string>
+     </void>
+     <void property="direccion">
+      <string>riera</string>
+     </void>
+     <void property="nif">
+      <string>14523658f</string>
+     </void>
+     <void property="nombre">
+      <string>mireia</string>
      </void>
      <void property="poblacion">
       <string>Pineda de Mar</string>

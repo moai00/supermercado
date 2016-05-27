@@ -33,6 +33,9 @@
      <void property="descripcion">
       <string>salsa agridulce</string>
      </void>
+     <void property="pvp">
+      <double>6.0</double>
+     </void>
     </object>
    </void>
    <void method="add">
@@ -44,23 +47,10 @@
       <string>lata berberechos</string>
      </void>
      <void property="pvp">
-      <double>0.1</double>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="modelo.Producto">
-     <void property="codigo">
-      <int>5</int>
-     </void>
-     <void property="descripcion">
-      <string>almejas</string>
-     </void>
-     <void property="pvp">
-      <double>5.0</double>
+      <double>10.0</double>
      </void>
      <void property="stock">
-      <int>2</int>
+      <int>25</int>
      </void>
     </object>
    </void>
@@ -90,6 +80,67 @@
      </void>
      <void property="pvp">
       <double>1.0</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Producto">
+     <void property="codigo">
+      <int>111</int>
+     </void>
+     <void property="descripcion">
+      <string>pepit</string>
+     </void>
+     <void property="pvp">
+      <double>20.0</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Producto">
+     <void property="codigo">
+      <int>218</int>
+     </void>
+     <void property="descripcion">
+      <string>morcillas</string>
+     </void>
+     <void property="pvp">
+      <double>12.0</double>
+     </void>
+     <void property="stock">
+      <int>3</int>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Producto">
+     <void property="codigo">
+      <int>344</int>
+     </void>
+     <void property="descripcion">
+      <string>tomate</string>
+     </void>
+     <void property="pvp">
+      <double>10.0</double>
+     </void>
+     <void property="stock">
+      <int>2</int>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Producto">
+     <void property="codigo">
+      <int>8</int>
+     </void>
+     <void property="descripcion">
+      <string>pizzas con pinya</string>
+     </void>
+     <void property="pvp">
+      <double>20.0</double>
+     </void>
+     <void property="stock">
+      <int>3</int>
      </void>
     </object>
    </void>
